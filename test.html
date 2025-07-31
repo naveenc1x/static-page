@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Blocker Detector</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        #adblock-status { font-size: 2em; font-weight: bold; }
+        .detected { color: #e74c3c; }
+        .not-detected { color: #2ecc71; }
+    </style>
+    
+    <script src="ads.js" async></script>
+</head>
+<body>
+
+    <h1>Ad Blocker Test</h1>
+    <div id="adblock-status">Checking...</div>
+
+    <script>
+        // 2. This is the detection script.
+        function checkAdBlocker() {
+            const statusDiv = document.getElementById('adblock-status');
+
+            // We wait a short moment to give the ad blocker time to act.
+            setTimeout(() => {
+                // 3. Check if the variable from ads.js was created.
+                // If 'canRunAds' is undefined, it means ads.js was blocked.
+                if (typeof canRunAds === 'undefined') {
+                    statusDiv.innerHTML = 'Ad Blocker: DETECTED';
+                    statusDiv.className = 'detected';
+                } else {
+                    statusDiv.innerHTML = 'Ad Blocker: NOT DETECTED';
+                    statusDiv.className = 'not-detected';
+                }
+            }, 100); // 100 millisecond delay is usually enough.
+        }
+
+        // Run the check after the page has loaded.
+        window.onload = checkAdBlocker;
+    </script>
+
+</body>
+</html>
