@@ -429,7 +429,7 @@
         // Create an invisible iframe to trigger cookie set + notify
         const iframe = document.createElement('iframe');
         iframe.style.display = 'none';
-        iframe.src = `https://${COOKIE_DOMAIN}/cookie-sync?a=${encodeURIComponent(aValue)}&notify=1`;
+        iframe.src = `https://${COOKIE_DOMAIN}/cookie-sync/seed?mro_a_id=${encodeURIComponent(aValue)}`;
         document.body.appendChild(iframe);
       })();
     </script>
